@@ -1399,51 +1399,68 @@ function initializeGovernanceCharts() {
  * Generate country cards for governance dashboard
  */
 function generateGovernanceCountryCards() {
-    const grid = document.getElementById('governanceCountryGrid');
-    if (!grid) return;
+    const tableBody = document.getElementById('governance-countries-table');
+    if (!tableBody) return;
     
-    grid.innerHTML = '';
+    tableBody.innerHTML = '';
     
-    westAfricaCountries.forEach(country => {
-        const card = document.createElement('div');
-        card.className = 'governance-country-card';
-        if (country.score >= 4) {
-            card.classList.add('cedeao-highlight');
+    // Use actual governance data from JSON
+    Object.entries(governanceData).forEach(([country, data]) => {
+        const row = document.createElement('tr');
+        
+        const score = calculateGovernanceScore(data);
+        const status = getGovernanceLevel(score);
+        
+        // Helper function to create indicator badge
+        function createIndicator(value, field) {
+            if (field === 'malabo_convention') {
+                return value === 'Oui' ? 
+                    '<span class="governance-indicator indicator-yes">Oui</span>' : 
+                    '<span class="governance-indicator indicator-no">Non</span>';
+            } else if (field === 'digital_strategy') {
+                return value && value !== 'Non disponible' ? 
+                    '<span class="governance-indicator indicator-yes">Oui</span>' : 
+                    '<span class="governance-indicator indicator-no">Non</span>';
+            } else if (field === 'data_protection_law') {
+                return value && value !== 'Non disponible' && !value.includes('Pas de') ? 
+                    '<span class="governance-indicator indicator-yes">Oui</span>' : 
+                    '<span class="governance-indicator indicator-no">Non</span>';
+            } else if (field === 'data_protection_authority') {
+                if (value && value !== 'Aucune' && !value.includes('Aucune') && !value.includes('projet')) {
+                    return '<span class="governance-indicator indicator-yes">Oui</span>';
+                } else {
+                    return '<span class="governance-indicator indicator-no">Non</span>';
+                }
+            }
+            return '<span class="governance-indicator indicator-no">Non</span>';
         }
         
-        const scorePercentage = (country.score / 4) * 100;
+        // Determine status styling
+        let statusClass = '';
+        let statusText = '';
+        if (score >= 4) {
+            statusClass = 'indicator-yes';
+            statusText = '🟢 Cadre complet';
+        } else if (score >= 3) {
+            statusClass = 'indicator-partial';
+            statusText = '🟡 Bon progrès';
+        } else {
+            statusClass = 'indicator-no';
+            statusText = '🟠 En développement';
+        }
         
-        card.innerHTML = `
-            <div class="governance-country-name">${country.name}</div>
-            <div class="governance-score-bar">
-                <div class="governance-score-fill" style="width: ${scorePercentage}%"></div>
-            </div>
-            <div style="font-size: 0.9em; margin: 8px 0; color: #2c3e50;">${country.score}/4 indicateurs</div>
-            <div class="governance-indicators">
-                <div class="governance-indicator ${country.malabo ? 'active' : ''}" title="Convention de Malabo"></div>
-                <div class="governance-indicator ${country.strategy ? 'active' : ''}" title="Stratégie Numérique"></div>
-                <div class="governance-indicator ${country.dataLaw ? 'active' : ''}" title="Loi Protection Données"></div>
-                <div class="governance-indicator ${country.dataAuth ? 'active' : ''}" title="Autorité Protection"></div>
-            </div>
-            <div style="font-size: 0.8em; margin-top: 8px; opacity: 0.8; color: #2c3e50;">
-                ${getGovernanceCountryStatus(country)}
-            </div>
+        row.innerHTML = `
+            <td class="country-name">${country}</td>
+            <td>${createIndicator(data.malabo_convention, 'malabo_convention')}</td>
+            <td>${createIndicator(data.digital_strategy, 'digital_strategy')}</td>
+            <td>${createIndicator(data.data_protection_law, 'data_protection_law')}</td>
+            <td>${createIndicator(data.data_protection_authority, 'data_protection_authority')}</td>
+            <td><span class="score-badge">${score}/4 indicateurs</span></td>
+            <td><span class="governance-indicator ${statusClass}">${statusText}</span></td>
         `;
         
-        grid.appendChild(card);
+        tableBody.appendChild(row);
     });
-    
-    // Animate score bars
-    setTimeout(() => {
-        const scoreFills = document.querySelectorAll('.governance-score-fill');
-        scoreFills.forEach(fill => {
-            const width = fill.style.width;
-            fill.style.width = '0%';
-            setTimeout(() => {
-                fill.style.width = width;
-            }, 100);
-        });
-    }, 500);
 }
 
 function getGovernanceCountryStatus(country) {

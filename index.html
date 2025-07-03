@@ -276,27 +276,79 @@
                         <div class="governance-chart-hint">💡 Cliquez sur les barres pour explorer les détails</div>
                     </div>
                     
-                    <div class="governance-chart-container governance-full-width">
-                        <div class="governance-chart-title">🌐 Détail des Pays d'Afrique de l'Ouest (CEDEAO)</div>
-                        <div class="governance-legend">
-                            <div class="governance-legend-item">
-                                <div class="governance-legend-icon" style="background: #ff6b6b;"></div>
-                                Convention de Malabo
-                            </div>
-                            <div class="governance-legend-item">
-                                <div class="governance-legend-icon" style="background: #4ecdc4;"></div>
-                                Stratégie Numérique
-                            </div>
-                            <div class="governance-legend-item">
-                                <div class="governance-legend-icon" style="background: #45b7d1;"></div>
-                                Loi Protection Données
-                            </div>
-                            <div class="governance-legend-item">
-                                <div class="governance-legend-icon" style="background: #96ceb4;"></div>
-                                Autorité Protection
+                </div>
+                
+                <!-- Countries Detail Table -->
+                <div class="governance-countries">
+                    <h3 class="section-title">🌐 Détail des Pays d'Afrique de l'Ouest (CEDEAO)</h3>
+                    
+                    <div class="countries-table-container">
+                        <table class="governance-table">
+                            <thead>
+                                <tr>
+                                    <th>Pays</th>
+                                    <th>Convention de Malabo</th>
+                                    <th>Stratégie Numérique</th>
+                                    <th>Loi Protection Données</th>
+                                    <th>Autorité Protection</th>
+                                    <th>Score</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody id="governance-countries-table">
+                                <!-- Countries will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Analysis Summary -->
+                <div class="governance-analysis-summary">
+                    <h3 class="section-title">📈 Analyse des Performances CEDEAO</h3>
+                    
+                    <div class="analysis-insights">
+                        <div class="insight-card insight-positive">
+                            <div class="insight-icon">🎯</div>
+                            <div class="insight-content">
+                                <h4>Leaders régionaux :</h4>
+                                <p><strong>Bénin, Cap-Vert, Côte d'Ivoire, Ghana et Guinée</strong> affichent un cadre normatif complet avec 4/4 indicateurs, démontrant leur engagement envers la gouvernance numérique.</p>
                             </div>
                         </div>
-                        <div class="governance-country-grid" id="governanceCountryGrid"></div>
+                        
+                        <div class="insight-card insight-warning">
+                            <div class="insight-icon">⚠️</div>
+                            <div class="insight-content">
+                                <h4>Défi majeur :</h4>
+                                <p>Seulement <strong>46.7% des pays CEDEAO ont ratifié la Convention de Malabo</strong>, contre 100% pour les stratégies numériques et les lois de protection des données.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="insight-card insight-info">
+                            <div class="insight-icon">💡</div>
+                            <div class="insight-content">
+                                <h4>Opportunité d'amélioration :</h4>
+                                <p><strong>20% des pays</strong> n'ont pas encore établi d'autorité de protection des données, représentant un gap important pour l'application effective des cadres normatifs.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="insight-card insight-recommendation">
+                            <div class="insight-icon">🚀</div>
+                            <div class="insight-content">
+                                <h4>Recommandation :</h4>
+                                <p><strong>Accélérer la ratification de Malabo</strong> dans les 8 pays restants et renforcer les mécanismes d'application avec des autorités de régulation autonomes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-section" id="infrastructure-analysis" style="display: none;">
+            <h3>🌐 Infrastructure Numérique - Cartes de Connectivité</h3>
+            <div class="infrastructure-content">
+                <div class="infrastructure-overview">
+                    <p><strong>Analyse:</strong> Visualisation des infrastructures critiques de connectivité en Afrique de l'Ouest</p>
+                </div>
                         
                         <div class="governance-analysis-card">
                             <div class="governance-analysis-title">📈 Analyse des Performances CEDEAO</div>
