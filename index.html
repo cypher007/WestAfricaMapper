@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Souveraineté Numérique - CEDEAO</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/styles.css?v=1751568720">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Menu -->
+        <nav class="navigation-menu">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1>🌍 CEDEAO Digital</h1>
+                    <span class="nav-subtitle">Souveraineté Numérique</span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active" data-target="home">
+                            <span class="nav-icon">🏠</span>
+                            <span class="nav-text">Accueil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#analyses" class="nav-link" data-target="analyses">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">Analyses</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#carte" class="nav-link" data-target="carte">
+                            <span class="nav-icon">🗺️</span>
+                            <span class="nav-text">Carte Interactive</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link" data-target="about">
+                            <span class="nav-icon">ℹ️</span>
+                            <span class="nav-text">À Propos</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="nav-mobile-toggle">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="header">
+            <p class="author-credit">Par Cheikh Fall, Président AfricTivistes</p>
+            <p class="header-quote">« La souveraineté absolue n'existe pas : nous dépendons tous les uns des autres. Ce qui compte, c'est de se donner les moyens de ne pas dépendre uniquement des autres. »</p>
+            <p>Domination des Fournisseurs d'Accès Internet Étrangers en Afrique de l'Ouest (CEDEAO)</p>
+        </div>
+
+        <!-- Analysis Modes Controls -->
+        <div class="modes-section">
+            <h3>📊 Analyses dans l'espace CEDEAO</h3>
+            <div class="modes-grid">
+                <button class="mode-btn active" id="isp-mode">
+                    <div class="mode-icon">🌍</div>
+                    <div class="mode-title">Analyse 1: Domination FAI</div>
+                    <div class="mode-description">Analyse des opérateurs étrangers dominants par pays CEDEAO</div>
+                </button>
+                <button class="mode-btn" id="governance-mode">
+                    <div class="mode-icon">🏛️</div>
+                    <div class="mode-title">Analyse 2: Gouvernance Numérique</div>
+                    <div class="mode-description">Indicateurs Union Africaine de maturité digitale</div>
+                </button>
+                <button class="mode-btn" id="infrastructure-mode">
+                    <div class="mode-icon">📡</div>
+                    <div class="mode-title">Analyse 3: Infrastructure</div>
+                    <div class="mode-description">Cartes ITU : Bande passante, Fibre, Câbles sous-marins</div>
+                </button>
+                <button class="mode-btn" id="cybersecurity-mode">
+                    <div class="mode-icon">🔒</div>
+                    <div class="mode-title">Analyse 4: CyberSécurité</div>
+                    <div class="mode-description">Mandats régulateurs TIC - Données ITU 2022</div>
+                </button>
+                <button class="mode-btn" id="sovereignty-mode">
+                    <div class="mode-icon">⚖️</div>
+                    <div class="mode-title">Analyse 5: Défis Souveraineté</div>
+                    <div class="mode-description">10 défis transformation digitale Afrique</div>
+                </button>
+                <button class="mode-btn" id="abidjan-mode">
+                    <div class="mode-icon">📜</div>
+                    <div class="mode-title">Déclaration d'Abidjan</div>
+                    <div class="mode-description">Gouvernance démocratique Internet Afrique</div>
+                </button>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <div class="controls">
+                <h3>🔍 Contrôles</h3>
+                <div class="control-group">
+                    <label class="control-label">
+                        <input type="checkbox" id="showInfrastructure" checked> 
+                        <span class="checkmark"></span>
+                        Infrastructures critiques
+                    </label>
+                    <label class="control-label">
+                        <input type="checkbox" id="showColonialBorders" checked> 
+                        <span class="checkmark"></span>
+                        Frontières coloniales
+                    </label>
+                    <label class="control-label">
+                        <input type="checkbox" id="showCoverage" checked> 
+                        <span class="checkmark"></span>
+                        Couverture réseau
+                    </label>
+                </div>
+            </div>
+            <div id="map"></div>
+            <div id="hover-stats" class="hover-stats-panel">
+                <!-- Dynamic ISP statistics will appear here on hover -->
+            </div>
+            <div id="loading" class="loading-overlay">
+                <div class="spinner"></div>
+                <p>Chargement de la carte...</p>
+            </div>
+        </div>
+
+        <div class="legend">
+            <h3>🗺️ Légende - Domination par Origine des Opérateurs</h3>
+            <div class="legend-grid">
+                <div class="legend-item" data-dominance="France">
+                    <div class="legend-color" style="background-color: #0000ff;"></div>
+                    <div>
+                        <div class="legend-text"><strong>Domination Française</strong></div>
+                        <div class="legend-operators">Orange, Sonatel (héritage colonial AOF)</div>
+                    </div>
+                </div>
+                <div class="legend-item" data-dominance="South Africa">
+                    <div class="legend-color" style="background-color: #00ff00;"></div>
+                    <div>
+                        <div class="legend-text"><strong>Domination Sud-Africaine</strong></div>
+                        <div class="legend-operators">MTN Group (expansion panafricaine)</div>
+                    </div>
+                </div>
+                <div class="legend-item" data-dominance="Morocco">
+                    <div class="legend-color" style="background-color: #ff0000;"></div>
+                    <div>
+                        <div class="legend-text"><strong>Domination Marocaine</strong></div>
+                        <div class="legend-operators">Moov/Maroc Telecom</div>
+                    </div>
+                </div>
+                <div class="legend-item" data-dominance="India">
+                    <div class="legend-color" style="background-color: #ff8000;"></div>
+                    <div>
+                        <div class="legend-text"><strong>Domination Indienne</strong></div>
+                        <div class="legend-operators">Airtel (croissance rapide)</div>
+                    </div>
+                </div>
+                <div class="legend-item" data-dominance="UK/USA">
+                    <div class="legend-color" style="background-color: #800080;"></div>
+                    <div>
+                        <div class="legend-text"><strong>Domination Anglo-Saxonne</strong></div>
+                        <div class="legend-operators">Vodafone, Africell</div>
+                    </div>
+                </div>
+                <div class="legend-item" data-dominance="Mixed">
+                    <div class="legend-color" style="background-color: #50e3c2;"></div>
+                    <div>
+                        <div class="legend-text"><strong>Domination Étrangère Mixte</strong></div>
+                        <div class="legend-operators">Plusieurs opérateurs étrangers</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number" id="stat-countries">15</div>
+                <div class="stat-label">Pays CEDEAO</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-foreign">87%</div>
+                <div class="stat-label">Domination Étrangère</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-origins">6</div>
+                <div class="stat-label">Pays d'Origine Dominants</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-sovereignty">0</div>
+                <div class="stat-label">Vraie Souveraineté Numérique</div>
+            </div>
+        </div>
+
+
+
+        <div class="analysis-section" id="isp-analysis">
+            <h3>📊 Analyse Géopolitique de la Dépendance Numérique</h3>
+            <div class="analysis-content">
+                <div class="analysis-item">
+                    <div class="analysis-icon">🔄</div>
+                    <div class="analysis-text">
+                        <strong>Continuité coloniale :</strong> Les anciennes colonies françaises (AOF) restent largement dominées par Orange/Sonatel, illustrant une continuité des liens de dépendance économique dans le secteur numérique.
+                    </div>
+                </div>
+                <div class="analysis-item">
+                    <div class="analysis-icon">🌍</div>
+                    <div class="analysis-text">
+                        <strong>Nouvelles puissances :</strong> L'Afrique du Sud (MTN) et l'Inde (Airtel) émergent comme nouveaux acteurs dominants, particulièrement dans les pays anglophones, redéfinissant la géopolitique des télécoms.
+                    </div>
+                </div>
+                <div class="analysis-item">
+                    <div class="analysis-icon">🎯</div>
+                    <div class="analysis-text">
+                        <strong>Fragmentation stratégique :</strong> Certains pays diversifient leurs dépendances (Nigeria, Ghana, Côte d'Ivoire) sans pour autant gagner en souveraineté numérique réelle.
+                    </div>
+                </div>
+                <div class="analysis-item">
+                    <div class="analysis-icon">⚠️</div>
+                    <div class="analysis-text">
+                        <strong>Enjeu de souveraineté :</strong> Aucun pays de la CEDEAO ne dispose d'une véritable autonomie dans les infrastructures numériques critiques, posant des questions de sécurité nationale et de développement durable.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-section" id="governance-analysis" style="display: none;">
+            <h3>🏛️ Gouvernance Numérique - Dashboard Union Africaine</h3>
+            <div class="governance-dashboard">
+                <div class="governance-overview">
+                    <p><strong>Source:</strong> Analyse officielle de l'Union Africaine sur la gouvernance numérique en Afrique (2024)</p>
+                </div>
+                
+                <div class="governance-stats-grid">
+                    <div class="governance-stat-card">
+                        <div class="governance-stat-number">56</div>
+                        <div class="governance-stat-label">Pays Analysés</div>
+                    </div>
+                    <div class="governance-stat-card cedeao-highlight">
+                        <div class="governance-stat-number">15</div>
+                        <div class="governance-stat-label">Pays CEDEAO</div>
+                    </div>
+                    <div class="governance-stat-card">
+                        <div class="governance-stat-number">15</div>
+                        <div class="governance-stat-label">Pays ayant ratifié Malabo</div>
+                    </div>
+                    <div class="governance-stat-card">
+                        <div class="governance-stat-number">46.7%</div>
+                        <div class="governance-stat-label">Ratification CEDEAO</div>
+                    </div>
+                </div>
+                
+                <div class="governance-charts-grid">
+                    <div class="governance-chart-container">
+                        <div class="governance-chart-title">📊 Ratification Convention de Malabo par Région</div>
+                        <canvas id="malaboChart"></canvas>
+                        <div class="governance-chart-hint">💡 Survolez les segments pour plus de détails</div>
+                    </div>
+                    
+                    <div class="governance-chart-container">
+                        <div class="governance-chart-title">🛡️ Cadres Numériques en Afrique de l'Ouest</div>
+                        <canvas id="frameworksChart"></canvas>
+                        <div class="governance-chart-hint">💡 Cliquez sur les barres pour explorer les détails</div>
+                    </div>
+                    
+                    <div class="governance-chart-container governance-full-width">
+                        <div class="governance-chart-title">🌐 Détail des Pays d'Afrique de l'Ouest (CEDEAO)</div>
+                        <div class="governance-legend">
+                            <div class="governance-legend-item">
+                                <div class="governance-legend-icon" style="background: #ff6b6b;"></div>
+                                Convention de Malabo
+                            </div>
+                            <div class="governance-legend-item">
+                                <div class="governance-legend-icon" style="background: #4ecdc4;"></div>
+                                Stratégie Numérique
+                            </div>
+                            <div class="governance-legend-item">
+                                <div class="governance-legend-icon" style="background: #45b7d1;"></div>
+                                Loi Protection Données
+                            </div>
+                            <div class="governance-legend-item">
+                                <div class="governance-legend-icon" style="background: #96ceb4;"></div>
+                                Autorité Protection
+                            </div>
+                        </div>
+                        <div class="governance-country-grid" id="governanceCountryGrid"></div>
+                        
+                        <div class="governance-analysis-card">
+                            <div class="governance-analysis-title">📈 Analyse des Performances CEDEAO</div>
+                            <div class="governance-analysis-text">
+                                <strong>Leaders régionaux :</strong> <span class="governance-highlight">Bénin, Cap-Vert, Côte d'Ivoire, Ghana et Guinée</span> 
+                                affichent un cadre normatif complet avec 4/4 indicateurs, démontrant leur engagement envers la gouvernance numérique.
+                            </div>
+                            <div class="governance-analysis-text">
+                                <strong>Défi majeur :</strong> Seulement <span class="governance-highlight">46.7% des pays CEDEAO</span> ont ratifié la Convention de Malabo, 
+                                contre 100% pour les stratégies numériques et les lois de protection des données.
+                            </div>
+                            <div class="governance-analysis-text">
+                                <strong>Opportunité d'amélioration :</strong> <span class="governance-highlight">20% des pays</span> n'ont pas encore établi d'autorité 
+                                de protection des données, représentant un gap important pour l'application effective des cadres normatifs.
+                            </div>
+                            <div class="governance-analysis-text">
+                                <strong>Recommandation :</strong> Accélérer la ratification de Malabo dans les 8 pays restants et renforcer 
+                                les mécanismes d'application avec des autorités de régulation autonomes.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-section" id="infrastructure-analysis" style="display: none;">
+            <h3>🌐 Infrastructure Numérique - Cartes de Connectivité</h3>
+            <div class="infrastructure-content">
+                <div class="infrastructure-overview">
+                    <p><strong>Analyse:</strong> Visualisation des infrastructures critiques de connectivité en Afrique de l'Ouest</p>
+                </div>
+                
+                <div class="infrastructure-maps">
+                    <div class="map-card">
+                        <h4>📊 Bande Passante Internationale par Megabit</h4>
+                        <div class="map-image-container">
+                            <img src="attached_assets/Bande passante Megabit_1750205103855.png" alt="Carte de la bande passante internationale par megabit" class="infrastructure-map">
+                        </div>
+                        <div class="map-description">
+                            <p><strong>Source:</strong> International Telecommunication Union (ITU)</p>
+                            <p>Cette carte révèle les inégalités de connectivité internationale en Afrique de l'Ouest. Les pays côtiers comme le Ghana, le Nigeria et la Côte d'Ivoire bénéficient d'une meilleure bande passante grâce aux câbles sous-marins, tandis que les pays enclavés (Mali, Niger, Burkina Faso) dépendent entièrement du transit via leurs voisins.</p>
+                        </div>
+                    </div>
+
+                    <div class="map-card">
+                        <h4>🔗 Réseau de Fibre Optique Africain</h4>
+                        <div class="map-image-container">
+                            <img src="attached_assets/Fibre optique_1750205103855.png" alt="Carte du réseau de fibre optique en Afrique" class="infrastructure-map">
+                        </div>
+                        <div class="map-description">
+                            <p><strong>Source:</strong> Africa Fibre Reach</p>
+                            <p>Le réseau de fibre optique terrestre montre la dépendance critique de l'Afrique de l'Ouest aux infrastructures de transit. Les pays CEDEAO sont interconnectés par des réseaux principalement contrôlés par des opérateurs étrangers, créant des points de défaillance unique et une vulnérabilité géopolitique.</p>
+                        </div>
+                    </div>
+
+                    <div class="map-card">
+                        <h4>🌊 Câbles Sous-Marins 2Africa</h4>
+                        <div class="map-image-container">
+                            <img src="attached_assets/Cables sous-marins AF 2Africa_1750205189081.png" alt="Carte des câbles sous-marins 2Africa" class="infrastructure-map">
+                        </div>
+                        <div class="map-description">
+                            <p><strong>Source:</strong> Telecom Egypt</p>
+                            <p>Le projet 2Africa de Meta (Facebook) illustre la nouvelle géopolitique des câbles sous-marins. Ce méga-projet renforce la dépendance de l'Afrique de l'Ouest aux géants technologiques américains pour sa connectivité internationale, posant des questions de souveraineté numérique et de contrôle des données.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="infrastructure-analysis">
+                    <h4>🔍 Analyse Géopolitique des Infrastructures</h4>
+                    <div class="analysis-grid">
+                        <div class="analysis-point">
+                            <div class="analysis-icon">⚠️</div>
+                            <div class="analysis-text">
+                                <strong>Vulnérabilité structurelle :</strong> Les pays enclavés (Mali, Niger, Burkina Faso) dépendent entièrement du transit via les pays côtiers, créant des risques géopolitiques majeurs en cas de tensions régionales.
+                            </div>
+                        </div>
+                        <div class="analysis-point">
+                            <div class="analysis-icon">🌊</div>
+                            <div class="analysis-text">
+                                <strong>Domination des câbles sous-marins :</strong> Les GAFAM (Google, Meta, Amazon) contrôlent de plus en plus les câbles sous-marins africains, notamment avec 2Africa, renforçant leur hégémonie numérique.
+                            </div>
+                        </div>
+                        <div class="analysis-point">
+                            <div class="analysis-icon">💰</div>
+                            <div class="analysis-text">
+                                <strong>Coûts prohibitifs :</strong> Les faibles volumes de bande passante dans les pays CEDEAO maintiennent des coûts élevés, freinant le développement numérique et perpétuant la fracture numérique.
+                            </div>
+                        </div>
+                        <div class="analysis-point">
+                            <div class="analysis-icon">🔒</div>
+                            <div class="analysis-text">
+                                <strong>Points de contrôle stratégiques :</strong> Les stations d'atterrissement des câbles sous-marins (Lagos, Dakar, Abidjan) deviennent des actifs géopolitiques critiques contrôlés par des intérêts étrangers.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-section" id="cybersecurity-analysis" style="display: none;">
+            <h3>🔒 CyberSécurité - Analyse des Mandats Réglementaires</h3>
+            <div class="cybersecurity-dashboard">
+                <div class="cybersecurity-overview">
+                    <p><strong>Source:</strong> Données authentiques ITU sur les mandats de cybersécurité des régulateurs TIC (2022)</p>
+                </div>
+                
+                <div class="cybersecurity-stats-grid">
+                    <div class="cybersecurity-stat-card">
+                        <div class="cybersecurity-stat-number">15</div>
+                        <div class="cybersecurity-stat-label">Pays CEDEAO Analysés</div>
+                    </div>
+                    <div class="cybersecurity-stat-card cyber-highlight">
+                        <div class="cybersecurity-stat-number">5</div>
+                        <div class="cybersecurity-stat-label">Pays avec Mandat Cyber</div>
+                    </div>
+                    <div class="cybersecurity-stat-card">
+                        <div class="cybersecurity-stat-number">33.3%</div>
+                        <div class="cybersecurity-stat-label">Taux de Couverture</div>
+                    </div>
+                    <div class="cybersecurity-stat-card">
+                        <div class="cybersecurity-stat-number">100%</div>
+                        <div class="cybersecurity-stat-label">Législation Cyber</div>
+                    </div>
+                </div>
+                
+                <div class="cybersecurity-charts-grid">
+                    <div class="cybersecurity-chart-container">
+                        <div class="cybersecurity-chart-title">🛡️ Mandats de CyberSécurité par Pays CEDEAO</div>
+                        <canvas id="cyberMandateChart"></canvas>
+                        <div class="cybersecurity-chart-hint">💡 Données ITU 2022 - Mandats des régulateurs TIC</div>
+                    </div>
+                    
+                    <div class="cybersecurity-chart-container">
+                        <div class="cybersecurity-chart-title">📊 Domaines de Couverture CyberSécurité</div>
+                        <canvas id="cyberAreasChart"></canvas>
+                        <div class="cybersecurity-chart-hint">💡 Cliquez pour explorer les domaines détaillés</div>
+                    </div>
+                    
+                    <div class="cybersecurity-chart-container cybersecurity-full-width">
+                        <div class="cybersecurity-chart-title">🌍 Carte Interactive - Mandats CyberSécurité CEDEAO</div>
+                        <img src="attached_assets/CyberSecurity_1750206307927.png" alt="Carte Cybersécurité ITU" class="cybersecurity-map" onerror="this.src='attached_assets/CyberSecurité_1750206307927.png'; this.onerror=function(){this.style.display='none'};">
+                        <div class="cybersecurity-legend">
+                            <div class="cybersecurity-legend-item">
+                                <div class="cybersecurity-legend-icon" style="background: #4ecdc4;"></div>
+                                Mandat Cybersécurité Actif
+                            </div>
+                            <div class="cybersecurity-legend-item">
+                                <div class="cybersecurity-legend-icon" style="background: #ff6b6b;"></div>
+                                Pas de Mandat Spécifique
+                            </div>
+                            <div class="cybersecurity-legend-item">
+                                <div class="cybersecurity-legend-icon" style="background: #ffeaa7;"></div>
+                                Données Non Disponibles
+                            </div>
+                        </div>
+                        
+                        <div class="cybersecurity-analysis-card">
+                            <div class="cybersecurity-analysis-title">🔍 Analyse des Performances CyberSécurité CEDEAO</div>
+                            <div class="cybersecurity-analysis-text">
+                                <strong>Pays leaders :</strong> <span class="cyber-highlight">Ghana et Sierra Leone</span> 
+                                disposent de mandats cybersécurité actifs pour leurs régulateurs TIC, couvrant la protection des infrastructures critiques.
+                            </div>
+                            <div class="cybersecurity-analysis-text">
+                                <strong>Gap réglementaire :</strong> Seulement <span class="cyber-highlight">33% des pays CEDEAO</span> 
+                                ont établi des mandats cybersécurité spécifiques pour leurs régulateurs, malgré 100% de législation existante.
+                            </div>
+                            <div class="cybersecurity-analysis-text">
+                                <strong>Domaines prioritaires :</strong> Protection des infrastructures critiques, sécurité des réseaux, 
+                                et protection des données personnelles constituent les <span class="cyber-highlight">3 piliers essentiels</span> 
+                                de la cybersécurité régionale.
+                            </div>
+                            <div class="cybersecurity-analysis-text">
+                                <strong>Recommandation :</strong> Harmoniser les mandats cybersécurité au niveau CEDEAO et renforcer 
+                                les capacités des régulateurs pour une approche coordonnée face aux cybermenaces transfrontalières.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-section" id="sovereignty-analysis" style="display: none;">
+            <h3>⚖️ Souveraineté Numérique dans l'espace CEDEAO : Les Défis</h3>
+            <div class="sovereignty-dashboard">
+                <div class="sovereignty-overview">
+                    <p><strong>Source:</strong> Analyse des défis de la transformation digitale en Afrique - Plus de 130 ans après Berlin, nouvelle carte de domination numérique</p>
+                </div>
+                
+                <div class="sovereignty-stats-grid">
+                    <div class="sovereignty-stat-card">
+                        <div class="sovereignty-stat-number">10</div>
+                        <div class="sovereignty-stat-label">Défis Identifiés</div>
+                    </div>
+                    <div class="sovereignty-stat-card sovereignty-highlight">
+                        <div class="sovereignty-stat-number">5</div>
+                        <div class="sovereignty-stat-label">Défis Critiques</div>
+                    </div>
+                    <div class="sovereignty-stat-card">
+                        <div class="sovereignty-stat-number">4</div>
+                        <div class="sovereignty-stat-label">Domaines d'Impact</div>
+                    </div>
+                    <div class="sovereignty-stat-card">
+                        <div class="sovereignty-stat-number">70%</div>
+                        <div class="sovereignty-stat-label">Impact Élevé/Critique</div>
+                    </div>
+                </div>
+                
+                <div class="sovereignty-legend">
+                    <h4>🏷️ Légende des Domaines</h4>
+                    <div class="sovereignty-legend-items">
+                        <div class="sovereignty-legend-item">
+                            <span class="domain-badge tech-badge">Technologie</span>
+                            <span>Infrastructure & Outils</span>
+                        </div>
+                        <div class="sovereignty-legend-item">
+                            <span class="domain-badge policy-badge">Politique</span>
+                            <span>Stratégies & Réglementation</span>
+                        </div>
+                        <div class="sovereignty-legend-item">
+                            <span class="domain-badge governance-badge">Gouvernance</span>
+                            <span>Souveraineté & Contrôle</span>
+                        </div>
+                        <div class="sovereignty-legend-item">
+                            <span class="domain-badge economic-badge">Économie</span>
+                            <span>Innovation & Développement</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sovereignty-table-container">
+                    <table class="sovereignty-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 8%;">#</th>
+                                <th style="width: 25%;">Défi Identifié</th>
+                                <th style="width: 12%;">Domaine</th>
+                                <th style="width: 12%;">Impact</th>
+                                <th style="width: 43%;">Détails & Conséquences</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sovereignty-table-body">
+                            <!-- Table content will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="sovereignty-analysis-card">
+                    <div class="sovereignty-analysis-title">📈 Analyse Stratégique des Défis</div>
+                    <div class="sovereignty-analysis-text">
+                        <strong>Constat alarmant :</strong> <span class="sovereignty-highlight">Plus de 130 ans après Berlin</span>, 
+                        l'Afrique affiche une nouvelle carte de domination par les géants du numérique, reproduisant les schémas coloniaux.
+                    </div>
+                    <div class="sovereignty-analysis-text">
+                        <strong>Dépendance technologique :</strong> <span class="sovereignty-highlight">Dépendance totale</span> 
+                        aux composants électroniques importés, logiciels externes, et infrastructures contrôlées par l'étranger.
+                    </div>
+                    <div class="sovereignty-analysis-text">
+                        <strong>Urgence d'action :</strong> Nous devons choisir d'affronter cette transformation numérique ou de la subir. 
+                        <span class="sovereignty-highlight">Aucun pays CEDEAO</span> ne pourra relever ces défis seul.
+                    </div>
+                    <div class="sovereignty-analysis-text">
+                        <strong>Vision stratégique :</strong> Substituer la dépendance totale par une interdépendance consentie 
+                        qui protège les données, la sécurité et l'indépendance régionale.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-section" id="abidjan-analysis" style="display: none;">
+            <h3>📜 Déclaration d'Abidjan pour une Gouvernance Démocratique de l'Internet en Afrique</h3>
+            <div class="abidjan-dashboard">
+                <div class="abidjan-header">
+                    <div class="abidjan-context">
+                        <p><strong>Source:</strong> 3e Sommet AfricTivistes, Abidjan - 11-12 novembre 2021</p>
+                        <p><strong>Thème:</strong> "Promouvoir le développement et la gouvernance démocratique de l'internet en Afrique"</p>
+                    </div>
+                    
+                    <div class="abidjan-key-quote">
+                        <div class="quote-icon">💬</div>
+                        <div class="quote-text">
+                            "La souveraineté numérique est un attribut de la souveraineté de l'État moderne, que tout gouvernement se doit de créer les conditions nécessaires à son affirmation."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="abidjan-stats-grid">
+                    <div class="abidjan-stat-card">
+                        <div class="abidjan-stat-number">12</div>
+                        <div class="abidjan-stat-label">Recommandations Clés</div>
+                    </div>
+                    <div class="abidjan-stat-card abidjan-highlight">
+                        <div class="abidjan-stat-number">4</div>
+                        <div class="abidjan-stat-label">Piliers Stratégiques</div>
+                    </div>
+                    <div class="abidjan-stat-card">
+                        <div class="abidjan-stat-number">2021</div>
+                        <div class="abidjan-stat-label">Sommet Abidjan</div>
+                    </div>
+                    <div class="abidjan-stat-card">
+                        <div class="abidjan-stat-number">15</div>
+                        <div class="abidjan-stat-label">Pays CEDEAO Concernés</div>
+                    </div>
+                </div>
+                
+                <div class="abidjan-pillars">
+                    <h4>🏛️ Les 4 Piliers Stratégiques de la Déclaration</h4>
+                    <div class="pillars-grid">
+                        <div class="pillar-card governance-pillar">
+                            <div class="pillar-icon">⚖️</div>
+                            <div class="pillar-title">Gouvernance Démocratique</div>
+                            <div class="pillar-description">État de droit, libertés fondamentales et redevabilité des pouvoirs publics</div>
+                        </div>
+                        <div class="pillar-card sovereignty-pillar">
+                            <div class="pillar-icon">🛡️</div>
+                            <div class="pillar-title">Souveraineté Numérique</div>
+                            <div class="pillar-description">Protection des données nationales et expertise locale</div>
+                        </div>
+                        <div class="pillar-card innovation-pillar">
+                            <div class="pillar-icon">🚀</div>
+                            <div class="pillar-title">Innovation Économique</div>
+                            <div class="pillar-description">Développement de l'économie numérique africaine</div>
+                        </div>
+                        <div class="pillar-card protection-pillar">
+                            <div class="pillar-icon">🔒</div>
+                            <div class="pillar-title">Protection des Acteurs</div>
+                            <div class="pillar-description">Sécurité des journalistes, blogueurs et activistes</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="abidjan-recommendations">
+                    <h4>📋 Recommandations Prioritaires</h4>
+                    <div class="recommendations-container">
+                        <div class="recommendation-card priority-high">
+                            <div class="recommendation-number">1</div>
+                            <div class="recommendation-content">
+                                <div class="recommendation-title">Convention de Malabo</div>
+                                <div class="recommendation-text">Sensibiliser les États sur la protection des données conformément à la Convention de l'Union africaine sur la cybercriminalité</div>
+                                <div class="recommendation-impact">🎯 Impact: Protection des données nationales</div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-card priority-high">
+                            <div class="recommendation-number">2</div>
+                            <div class="recommendation-content">
+                                <div class="recommendation-title">Expertise Nationale</div>
+                                <div class="recommendation-text">Privilégier les expertises nationales dans la mise en place des politiques publiques numériques responsables</div>
+                                <div class="recommendation-impact">🎯 Impact: Autonomie technologique</div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-card priority-medium">
+                            <div class="recommendation-number">3</div>
+                            <div class="recommendation-content">
+                                <div class="recommendation-title">Législation Cybercriminalité</div>
+                                <div class="recommendation-text">Lois sur la cybercriminalité en phase avec la Convention de Malabo et respectant les droits des citoyens</div>
+                                <div class="recommendation-impact">🎯 Impact: Cadre juridique équilibré</div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-card priority-medium">
+                            <div class="recommendation-number">4</div>
+                            <div class="recommendation-content">
+                                <div class="recommendation-title">Collaboration Société Civile</div>
+                                <div class="recommendation-text">Collaborer avec les organisations de la société civile sur la collecte des données éthiques</div>
+                                <div class="recommendation-impact">🎯 Impact: Transparence et participation</div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-card priority-high">
+                            <div class="recommendation-number">5</div>
+                            <div class="recommendation-content">
+                                <div class="recommendation-title">Protection Journalistes</div>
+                                <div class="recommendation-text">Garantir la protection des journalistes et blogueurs selon l'Observation Générale N°34 de l'ONU</div>
+                                <div class="recommendation-impact">🎯 Impact: Liberté d'expression</div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-card priority-medium">
+                            <div class="recommendation-number">6</div>
+                            <div class="recommendation-content">
+                                <div class="recommendation-title">Lutte Désinformation</div>
+                                <div class="recommendation-text">Rejet énergique de la désinformation et des discours de haine dans le cyberespace</div>
+                                <div class="recommendation-impact">🎯 Impact: Cohésion sociale</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="abidjan-constitutional">
+                    <h4>📜 Inscription Constitutionnelle Recommandée</h4>
+                    <div class="constitutional-items">
+                        <div class="constitutional-item">
+                            <div class="constitutional-icon">🌐</div>
+                            <div class="constitutional-text">Droit d'accès à Internet</div>
+                        </div>
+                        <div class="constitutional-item">
+                            <div class="constitutional-icon">🔓</div>
+                            <div class="constitutional-text">Ouverture et neutralité du net</div>
+                        </div>
+                        <div class="constitutional-item">
+                            <div class="constitutional-icon">🛡️</div>
+                            <div class="constitutional-text">Souveraineté numérique</div>
+                        </div>
+                        <div class="constitutional-item">
+                            <div class="constitutional-icon">🔐</div>
+                            <div class="constitutional-text">Protection des données</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="abidjan-conclusion">
+                    <div class="conclusion-title">🎯 Vision Stratégique AfricTivistes</div>
+                    <div class="conclusion-text">
+                        <strong>Partenariats multi-sectoriels :</strong> Collaboration entre secteur privé, public, instances de régulation et société civile pour créer de véritables infrastructures nationales et continentales respectant les droits humains.
+                    </div>
+                    <div class="conclusion-text">
+                        <strong>Capacitation :</strong> Renforcer les capacités des acteurs de l'information et sensibiliser la jeunesse africaine sur l'utilisation responsable des outils numériques.
+                    </div>
+                    <div class="conclusion-text">
+                        <strong>Opportunités économiques :</strong> Exploiter pleinement les opportunités économiques qu'offre le numérique pour le développement continental.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 - Analyse géopolitique des télécommunications en Afrique de l'Ouest | Données basées sur les parts de marché 2024</p>
+        </div>
+    </div>
+
+    <!-- Modal for country details -->
+    <div id="countryModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="js/map.js?v=1751568720"></script>
+</body>
+</html>

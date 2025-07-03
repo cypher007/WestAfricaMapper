@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Development
+.DS_Store
+.vscode/
+*.log
+
+# Replit specific
+.replit
+replit.nix
+pyproject.toml
+uv.lock
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Development only
+test-deployment.py
+deployment-test.sh
+fix-cybersecurity-image.py
