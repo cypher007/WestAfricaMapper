@@ -2059,12 +2059,30 @@ window.addEventListener('resize', function() {
  */
 function setupNavigationMenu() {
     const navLinks = document.querySelectorAll('.nav-link');
+    const dropdownLinks = document.querySelectorAll('.dropdown-link');
     const mobileToggle = document.querySelector('.nav-mobile-toggle');
     const navMenu = document.querySelector('.nav-menu');
+    const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
     
-    // Handle navigation link clicks
+    // Handle main navigation link clicks
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
+            // Check if this is a dropdown parent
+            const parentItem = this.closest('.nav-item.dropdown');
+            if (parentItem) {
+                e.preventDefault();
+                
+                // Toggle dropdown on mobile
+                if (window.innerWidth <= 768) {
+                    parentItem.classList.toggle('active');
+                    return;
+                }
+                
+                // On desktop, just scroll to analyses section
+                scrollToSection('modes-section');
+                return;
+            }
+            
             e.preventDefault();
             
             // Remove active class from all links
@@ -2100,6 +2118,35 @@ function setupNavigationMenu() {
         });
     });
     
+    // Handle dropdown link clicks
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const analysisMode = this.getAttribute('data-analysis');
+            const analysisBtn = document.getElementById(analysisMode);
+            
+            if (analysisBtn) {
+                // Scroll to the analyses section first
+                scrollToSection('modes-section');
+                
+                // Then trigger the analysis mode after a short delay
+                setTimeout(() => {
+                    analysisBtn.click();
+                }, 300);
+            }
+            
+            // Close mobile menu if open
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                mobileToggle.classList.remove('active');
+            }
+            
+            // Close dropdown on mobile
+            dropdownItems.forEach(item => item.classList.remove('active'));
+        });
+    });
+    
     // Handle mobile menu toggle
     if (mobileToggle) {
         mobileToggle.addEventListener('click', function() {
@@ -2113,6 +2160,8 @@ function setupNavigationMenu() {
         if (!e.target.closest('.navigation-menu')) {
             navMenu.classList.remove('active');
             mobileToggle.classList.remove('active');
+            // Also close all dropdowns
+            dropdownItems.forEach(item => item.classList.remove('active'));
         }
     });
     
