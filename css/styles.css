@@ -563,6 +563,12 @@ body {
     margin: 30px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     border: 1px solid #e9ecef;
+    display: none; /* Hidden by default */
+}
+
+/* Show legend only in ISP analysis mode */
+body.mode-isp .legend {
+    display: block;
 }
 
 .legend h3 {
@@ -884,6 +890,33 @@ body {
     .governance-stat-number {
         font-size: 1.8em;
     }
+}
+
+/* Improved text readability for analysis sections */
+.analysis-section h3,
+.analysis-section h4 {
+    color: #1a202c !important;
+    font-weight: 600;
+}
+
+.analysis-section p,
+.analysis-section div:not(.nav-brand):not(.nav-container),
+.analysis-section span:not(.nav-text):not(.nav-icon) {
+    color: #2d3748 !important;
+    font-weight: 500;
+}
+
+.analysis-section .analysis-intro,
+.analysis-section .analysis-text,
+.analysis-section .analysis-subtitle {
+    color: #2d3748 !important;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.analysis-section strong {
+    color: #1a202c !important;
+    font-weight: 600;
 }
 
 /* Enhanced governance table styles */

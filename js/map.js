@@ -1942,122 +1942,114 @@ function clearHoverStatistics() {
  * Setup new modes section navigation
  */
 function setupNewModesNavigation() {
-    // ISP Mode (Analyse 1) - Show map
-    const ispBtn = document.getElementById('isp-mode');
-    if (ispBtn) {
-        ispBtn.addEventListener('click', function() {
-            document.querySelectorAll('.analysis-section').forEach(section => {
-                section.style.display = 'none';
-            });
-            const ispAnalysis = document.getElementById('isp-analysis');
-            if (ispAnalysis) {
-                ispAnalysis.style.display = 'block';
-            }
-            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
-            ispBtn.classList.add('active');
-            toggleMapVisibility(true); // Show map for ISP analysis
-        });
-    }
-
-    // Governance Mode (Analyse 2) - Hide map
-    const governanceBtn = document.getElementById('governance-mode');
-    if (governanceBtn) {
-        governanceBtn.addEventListener('click', function() {
-            document.querySelectorAll('.analysis-section').forEach(section => {
-                section.style.display = 'none';
-            });
-            const governanceAnalysis = document.getElementById('governance-analysis');
-            if (governanceAnalysis) {
-                governanceAnalysis.style.display = 'block';
-            }
-            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
-            governanceBtn.classList.add('active');
-            toggleMapVisibility(false); // Hide map
+    // Setup navigation for data-analysis links
+    const analysisButtons = document.querySelectorAll('[data-analysis]');
+    const aboutButton = document.querySelector('[data-target="about"]');
+    
+    analysisButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const mode = button.getAttribute('data-analysis');
             
-            if (typeof Chart !== 'undefined') {
-                setTimeout(() => {
-                    initializeGovernanceCharts();
-                    generateGovernanceCountryCards();
-                }, 100);
-            }
-        });
-    }
-
-    // Infrastructure Mode (Analyse 3) - Hide map
-    const infrastructureBtn = document.getElementById('infrastructure-mode');
-    if (infrastructureBtn) {
-        infrastructureBtn.addEventListener('click', function() {
-            document.querySelectorAll('.analysis-section').forEach(section => {
-                section.style.display = 'none';
-            });
-            const infrastructureAnalysis = document.getElementById('infrastructure-analysis');
-            if (infrastructureAnalysis) {
-                infrastructureAnalysis.style.display = 'block';
-            }
-            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
-            infrastructureBtn.classList.add('active');
-            toggleMapVisibility(false); // Hide map
-        });
-    }
-
-    // Cybersecurity Mode (Analyse 4) - Hide map
-    const cybersecurityBtn = document.getElementById('cybersecurity-mode');
-    if (cybersecurityBtn) {
-        cybersecurityBtn.addEventListener('click', function() {
-            document.querySelectorAll('.analysis-section').forEach(section => {
-                section.style.display = 'none';
-            });
-            const cybersecurityAnalysis = document.getElementById('cybersecurity-analysis');
-            if (cybersecurityAnalysis) {
-                cybersecurityAnalysis.style.display = 'block';
-            }
-            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
-            cybersecurityBtn.classList.add('active');
-            toggleMapVisibility(false); // Hide map
+            // Remove active class from all navigation items
+            document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            button.classList.add('active');
             
-            if (typeof Chart !== 'undefined') {
-                setTimeout(() => {
-                    initializeCybersecurityCharts();
-                }, 100);
-            }
-        });
-    }
-
-    // Sovereignty Mode (Analyse 5) - Hide map
-    const sovereigntyBtn = document.getElementById('sovereignty-mode');
-    if (sovereigntyBtn) {
-        sovereigntyBtn.addEventListener('click', function() {
-            document.querySelectorAll('.analysis-section').forEach(section => {
-                section.style.display = 'none';
-            });
-            const sovereigntyAnalysis = document.getElementById('sovereignty-analysis');
-            if (sovereigntyAnalysis) {
-                sovereigntyAnalysis.style.display = 'block';
-            }
-            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
-            sovereigntyBtn.classList.add('active');
-            toggleMapVisibility(false); // Hide map
+            // Update body class for mode-specific styling (legend visibility)
+            document.body.className = '';
+            document.body.classList.add(`mode-${mode.replace('-mode', '')}`);
             
-            setTimeout(() => {
-                populateSovereigntyTable();
-            }, 100);
-        });
-    }
-
-    // Abidjan Mode (Analyse 6) - Hide map
-    const abidjanBtn = document.getElementById('abidjan-mode');
-    if (abidjanBtn) {
-        abidjanBtn.addEventListener('click', function() {
-            document.querySelectorAll('.analysis-section').forEach(section => {
+            // Hide all sections
+            const allSections = document.querySelectorAll('.analysis-section, #about, #home');
+            allSections.forEach(section => {
                 section.style.display = 'none';
             });
-            const abidjanAnalysis = document.getElementById('abidjan-analysis');
-            if (abidjanAnalysis) {
-                abidjanAnalysis.style.display = 'block';
+            
+            // Show the requested analysis section
+            switch(mode) {
+                case 'isp-mode':
+                    const ispAnalysis = document.getElementById('isp-analysis');
+                    if (ispAnalysis) {
+                        ispAnalysis.style.display = 'block';
+                    }
+                    toggleMapVisibility(true); // Show map for ISP analysis
+                    break;
+                case 'governance-mode':
+                    const governanceAnalysis = document.getElementById('governance-analysis');
+                    if (governanceAnalysis) {
+                        governanceAnalysis.style.display = 'block';
+                    }
+                    toggleMapVisibility(false); // Hide map
+                    
+                    if (typeof Chart !== 'undefined') {
+                        setTimeout(() => {
+                            initializeGovernanceCharts();
+                            generateGovernanceCountryCards();
+                        }, 100);
+                    }
+                    break;
+                case 'infrastructure-mode':
+                    const infrastructureAnalysis = document.getElementById('infrastructure-analysis');
+                    if (infrastructureAnalysis) {
+                        infrastructureAnalysis.style.display = 'block';
+                    }
+                    toggleMapVisibility(false); // Hide map
+                    break;
+                case 'cybersecurity-mode':
+                    const cybersecurityAnalysis = document.getElementById('cybersecurity-analysis');
+                    if (cybersecurityAnalysis) {
+                        cybersecurityAnalysis.style.display = 'block';
+                    }
+                    toggleMapVisibility(false); // Hide map
+                    
+                    if (typeof Chart !== 'undefined') {
+                        setTimeout(() => {
+                            initializeCybersecurityCharts();
+                        }, 100);
+                    }
+                    break;
+                case 'sovereignty-mode':
+                    const sovereigntyAnalysis = document.getElementById('sovereignty-analysis');
+                    if (sovereigntyAnalysis) {
+                        sovereigntyAnalysis.style.display = 'block';
+                    }
+                    toggleMapVisibility(false); // Hide map
+                    
+                    setTimeout(() => {
+                        populateSovereigntyTable();
+                    }, 100);
+                    break;
+                case 'abidjan-mode':
+                    const abidjanAnalysis = document.getElementById('abidjan-analysis');
+                    if (abidjanAnalysis) {
+                        abidjanAnalysis.style.display = 'block';
+                    }
+                    toggleMapVisibility(false); // Hide map
+                    break;
             }
-            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
-            abidjanBtn.classList.add('active');
-            toggleMapVisibility(false); // Hide map
+        });
+    });
+    
+    // Handle About button
+    if (aboutButton) {
+        aboutButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
+            aboutButton.classList.add('active');
+            
+            document.body.className = 'mode-about';
+            
+            const allSections = document.querySelectorAll('.analysis-section, #home');
+            allSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                aboutSection.style.display = 'block';
+            }
+            toggleMapVisibility(false);
         });
     }
 }
