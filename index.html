@@ -238,44 +238,57 @@
         </div>
 
         <div class="analysis-section" id="governance-analysis" style="display: none;">
-            <h3>🏛️ Gouvernance Numérique - Dashboard Union Africaine</h3>
-            <div class="governance-dashboard">
-                <div class="governance-overview">
-                    <p><strong>Source:</strong> Analyse officielle de l'Union Africaine sur la gouvernance numérique en Afrique (2024)</p>
+            <div class="governance-header">
+                <h3 class="governance-main-title">🏛️ Gouvernance Numérique - Dashboard Union Africaine</h3>
+                <div class="governance-source-banner">
+                    <span class="source-label">Source:</span>
+                    <span class="source-text">Analyse officielle de l'Union Africaine sur la gouvernance numérique en Afrique (2024)</span>
                 </div>
-                
+            </div>
+            
+            <div class="governance-dashboard">
+                <!-- Statistics Cards -->
                 <div class="governance-stats-grid">
-                    <div class="governance-stat-card">
+                    <div class="governance-stat-card stat-beige">
                         <div class="governance-stat-number">56</div>
                         <div class="governance-stat-label">Pays Analysés</div>
                     </div>
-                    <div class="governance-stat-card cedeao-highlight">
+                    <div class="governance-stat-card stat-peach">
                         <div class="governance-stat-number">15</div>
                         <div class="governance-stat-label">Pays CEDEAO</div>
                     </div>
-                    <div class="governance-stat-card">
+                    <div class="governance-stat-card stat-gray">
                         <div class="governance-stat-number">15</div>
                         <div class="governance-stat-label">Pays ayant ratifié Malabo</div>
                     </div>
-                    <div class="governance-stat-card">
+                    <div class="governance-stat-card stat-pink">
                         <div class="governance-stat-number">46.7%</div>
                         <div class="governance-stat-label">Ratification CEDEAO</div>
                     </div>
                 </div>
                 
+                <!-- Charts Grid -->
                 <div class="governance-charts-grid">
                     <div class="governance-chart-container">
-                        <div class="governance-chart-title">📊 Ratification Convention de Malabo par Région</div>
-                        <canvas id="malaboChart"></canvas>
-                        <div class="governance-chart-hint">💡 Survolez les segments pour plus de détails</div>
+                        <div class="governance-chart-header">
+                            <span class="chart-icon">📊</span>
+                            <span class="chart-title">Ratification Convention de Malabo par Région</span>
+                        </div>
+                        <div class="governance-chart-content">
+                            <canvas id="malaboChart"></canvas>
+                        </div>
                     </div>
                     
                     <div class="governance-chart-container">
-                        <div class="governance-chart-title">🛡️ Cadres Numériques en Afrique de l'Ouest</div>
-                        <canvas id="frameworksChart"></canvas>
+                        <div class="governance-chart-header">
+                            <span class="chart-icon">🛡️</span>
+                            <span class="chart-title">Cadres Numériques en Afrique de l'Ouest</span>
+                        </div>
+                        <div class="governance-chart-content">
+                            <canvas id="frameworksChart"></canvas>
+                        </div>
                         <div class="governance-chart-hint">💡 Cliquez sur les barres pour explorer les détails</div>
                     </div>
-                    
                 </div>
                 
                 <!-- Countries Detail Table -->
