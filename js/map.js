@@ -1942,8 +1942,9 @@ function clearHoverStatistics() {
  * Setup new modes section navigation
  */
 function setupNewModesNavigation() {
-    // Setup navigation for data-analysis links
+    // Setup navigation for both menu links and analysis cards
     const analysisButtons = document.querySelectorAll('[data-analysis]');
+    const analysisCards = document.querySelectorAll('.analysis-card');
     const aboutButton = document.querySelector('[data-target="about"]');
     
     analysisButtons.forEach(button => {
@@ -2026,6 +2027,94 @@ function setupNewModesNavigation() {
                         abidjanAnalysis.style.display = 'block';
                     }
                     toggleMapVisibility(false); // Hide map
+                    break;
+            }
+        });
+    });
+    
+    // Setup analysis cards navigation
+    analysisCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const mode = card.id;
+            
+            // Remove active class from all cards and menu items
+            analysisCards.forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked card
+            card.classList.add('active');
+            
+            // Update body class for mode-specific styling
+            document.body.className = '';
+            document.body.classList.add(`mode-${mode.replace('-mode', '')}`);
+            
+            // Hide all sections
+            const allSections = document.querySelectorAll('.analysis-section, #about, #home');
+            allSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show the requested analysis section
+            switch(mode) {
+                case 'isp-mode':
+                    const ispAnalysis = document.getElementById('isp-analysis');
+                    if (ispAnalysis) {
+                        ispAnalysis.style.display = 'block';
+                    }
+                    toggleMapVisibility(true);
+                    break;
+                case 'governance-mode':
+                    const governanceAnalysis = document.getElementById('governance-analysis');
+                    if (governanceAnalysis) {
+                        governanceAnalysis.style.display = 'block';
+                    }
+                    toggleMapVisibility(false);
+                    
+                    if (typeof Chart !== 'undefined') {
+                        setTimeout(() => {
+                            initializeGovernanceCharts();
+                            generateGovernanceCountryCards();
+                        }, 100);
+                    }
+                    break;
+                case 'infrastructure-mode':
+                    const infrastructureAnalysis = document.getElementById('infrastructure-analysis');
+                    if (infrastructureAnalysis) {
+                        infrastructureAnalysis.style.display = 'block';
+                    }
+                    toggleMapVisibility(false);
+                    break;
+                case 'cybersecurity-mode':
+                    const cybersecurityAnalysis = document.getElementById('cybersecurity-analysis');
+                    if (cybersecurityAnalysis) {
+                        cybersecurityAnalysis.style.display = 'block';
+                    }
+                    toggleMapVisibility(false);
+                    
+                    if (typeof Chart !== 'undefined') {
+                        setTimeout(() => {
+                            initializeCybersecurityCharts();
+                        }, 100);
+                    }
+                    break;
+                case 'sovereignty-mode':
+                    const sovereigntyAnalysis = document.getElementById('sovereignty-analysis');
+                    if (sovereigntyAnalysis) {
+                        sovereigntyAnalysis.style.display = 'block';
+                    }
+                    toggleMapVisibility(false);
+                    
+                    setTimeout(() => {
+                        populateSovereigntyTable();
+                    }, 100);
+                    break;
+                case 'abidjan-mode':
+                    const abidjanAnalysis = document.getElementById('abidjan-analysis');
+                    if (abidjanAnalysis) {
+                        abidjanAnalysis.style.display = 'block';
+                    }
+                    toggleMapVisibility(false);
                     break;
             }
         });

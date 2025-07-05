@@ -919,6 +919,341 @@ body.mode-isp .legend {
     font-weight: 600;
 }
 
+/* Modern Analyses Section */
+.modern-analyses-section {
+    margin: 60px 0;
+    padding: 0 20px;
+}
+
+.analyses-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.analyses-title {
+    font-size: 3.5em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    text-shadow: none;
+}
+
+.analyses-subtitle {
+    font-size: 1.3em;
+    color: #64748b;
+    font-weight: 500;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.analyses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.analysis-card {
+    position: relative;
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    min-height: 240px;
+}
+
+.analysis-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 50%, rgba(240, 147, 251, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 20px;
+}
+
+.analysis-card:hover::before {
+    opacity: 1;
+}
+
+.analysis-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    border-color: #667eea;
+}
+
+.analysis-card.active {
+    border-color: #667eea;
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+}
+
+.analysis-card.active::before {
+    opacity: 1;
+}
+
+.card-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+    border-radius: 20px 20px 0 0;
+}
+
+.card-icon {
+    font-size: 3em;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.card-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.card-description {
+    color: #64748b;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.card-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+    .analyses-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 10px;
+    }
+    
+    .analysis-card {
+        padding: 25px;
+        min-height: 200px;
+    }
+    
+    .analyses-title {
+        font-size: 2.5em;
+    }
+    
+    .analyses-subtitle {
+        font-size: 1.1em;
+    }
+}
+
+/* Professional Analysis Layout Components */
+.analysis-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 25px;
+    border-bottom: 3px solid #e2e8f0;
+}
+
+.analysis-title {
+    font-size: 2.8em;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.analysis-subtitle {
+    font-size: 1.2em;
+    color: #64748b;
+    font-weight: 500;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Infrastructure Analysis Styles */
+.infrastructure-dashboard {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.infrastructure-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.infrastructure-stat-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.infrastructure-stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.infrastructure-stat-card.infra-highlight {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.infrastructure-stat-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.infrastructure-stat-label {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.infrastructure-stat-description {
+    font-size: 0.9em;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+/* Cybersecurity Analysis Styles */
+.cybersecurity-dashboard {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.cybersecurity-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.cybersecurity-stat-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.cybersecurity-stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.cybersecurity-stat-card.cyber-highlight {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.cybersecurity-stat-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.cybersecurity-stat-label {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.cybersecurity-stat-description {
+    font-size: 0.9em;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+/* Sovereignty Analysis Styles */
+.sovereignty-dashboard {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.sovereignty-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.sovereignty-stat-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.sovereignty-stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.sovereignty-stat-card.sovereignty-highlight {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    color: white;
+}
+
+.sovereignty-stat-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.sovereignty-stat-label {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.sovereignty-stat-description {
+    font-size: 0.9em;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
 /* Enhanced governance table styles */
 .countries-table-container {
     background: white;
