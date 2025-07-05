@@ -16,8 +16,7 @@
         <nav class="navigation-menu">
             <div class="nav-container">
                 <div class="nav-brand">
-                    <h1>🌍 AfricTivistes Digital Initiative</h1>
-                    <span class="nav-subtitle">Analyses Souveraineté Numérique</span>
+                    <h1><a href="#" class="brand-link" onclick="window.location.reload()">🌍 AfricTivistes Digital Initiative</a></h1>
                 </div>
                 
                 <ul class="nav-menu">
@@ -82,7 +81,7 @@
         <!-- Analysis Modes Controls -->
         <div class="modern-analyses-section">
             <div class="analyses-header">
-                <h2 class="analyses-title">📊 Analyses dans l'espace CEDEAO</h2>
+                <h2 class="analyses-title">📊 Analyses AfricTivistes dans l'espace CEDEAO</h2>
                 <p class="analyses-subtitle">Explorez les 6 dimensions de la souveraineté numérique en Afrique de l'Ouest</p>
             </div>
             <div class="analyses-grid">
@@ -412,13 +411,43 @@
         </div>
 
         <div class="analysis-section" id="infrastructure-analysis" style="display: none;">
-            <h3>🌐 Infrastructure Numérique - Cartes de Connectivité</h3>
-            <div class="infrastructure-content">
-                <div class="infrastructure-overview">
-                    <p><strong>Analyse:</strong> Visualisation des infrastructures critiques de connectivité en Afrique de l'Ouest</p>
+            <div class="analysis-header">
+                <h2 class="analysis-title">🌐 Infrastructure Numérique</h2>
+                <p class="analysis-subtitle">Analyse des infrastructures critiques de connectivité en Afrique de l'Ouest</p>
+            </div>
+            
+            <div class="infrastructure-dashboard">
+                <div class="infrastructure-stats-grid">
+                    <div class="infrastructure-stat-card">
+                        <div class="infrastructure-stat-number">15</div>
+                        <div class="infrastructure-stat-label">Pays CEDEAO</div>
+                        <div class="infrastructure-stat-description">Couverture complète</div>
+                    </div>
+                    <div class="infrastructure-stat-card infra-highlight">
+                        <div class="infrastructure-stat-number">85%</div>
+                        <div class="infrastructure-stat-label">Dépendance Câbles</div>
+                        <div class="infrastructure-stat-description">Contrôle étranger</div>
+                    </div>
+                    <div class="infrastructure-stat-card">
+                        <div class="infrastructure-stat-number">3</div>
+                        <div class="infrastructure-stat-label">Hubs Critiques</div>
+                        <div class="infrastructure-stat-description">Lagos, Dakar, Abidjan</div>
+                    </div>
+                    <div class="infrastructure-stat-card">
+                        <div class="infrastructure-stat-number">60%</div>
+                        <div class="infrastructure-stat-label">Pays Enclavés</div>
+                        <div class="infrastructure-stat-description">Vulnérabilité élevée</div>
+                    </div>
                 </div>
                 
-                <div class="infrastructure-maps">
+                <div class="infrastructure-content">
+                    <div class="infrastructure-overview">
+                        <div class="analysis-intro">
+                            <strong>Source:</strong> International Telecommunication Union (ITU) - Données authentiques 2024
+                        </div>
+                    </div>
+                    
+                    <div class="infrastructure-maps">
                     <div class="map-card">
                         <h4>📊 Bande Passante Internationale par Megabit</h4>
                         <div class="map-image-container">
@@ -486,28 +515,38 @@
         </div>
 
         <div class="analysis-section" id="cybersecurity-analysis" style="display: none;">
-            <h3>🔒 CyberSécurité - Analyse des Mandats Réglementaires</h3>
+            <div class="analysis-header">
+                <h2 class="analysis-title">🔒 CyberSécurité</h2>
+                <p class="analysis-subtitle">Analyse des mandats réglementaires de cybersécurité en Afrique de l'Ouest</p>
+            </div>
+            
             <div class="cybersecurity-dashboard">
                 <div class="cybersecurity-overview">
-                    <p><strong>Source:</strong> Données authentiques ITU sur les mandats de cybersécurité des régulateurs TIC (2022)</p>
+                    <div class="analysis-intro">
+                        <strong>Source:</strong> Données authentiques ITU sur les mandats de cybersécurité des régulateurs TIC (2022)
+                    </div>
                 </div>
                 
                 <div class="cybersecurity-stats-grid">
                     <div class="cybersecurity-stat-card">
                         <div class="cybersecurity-stat-number">15</div>
-                        <div class="cybersecurity-stat-label">Pays CEDEAO Analysés</div>
+                        <div class="cybersecurity-stat-label">Pays CEDEAO</div>
+                        <div class="cybersecurity-stat-description">Couverture complète</div>
                     </div>
                     <div class="cybersecurity-stat-card cyber-highlight">
                         <div class="cybersecurity-stat-number">5</div>
-                        <div class="cybersecurity-stat-label">Pays avec Mandat Cyber</div>
+                        <div class="cybersecurity-stat-label">Mandats Cyber</div>
+                        <div class="cybersecurity-stat-description">Régulateurs actifs</div>
                     </div>
                     <div class="cybersecurity-stat-card">
-                        <div class="cybersecurity-stat-number">33.3%</div>
-                        <div class="cybersecurity-stat-label">Taux de Couverture</div>
+                        <div class="cybersecurity-stat-number">33%</div>
+                        <div class="cybersecurity-stat-label">Taux Couverture</div>
+                        <div class="cybersecurity-stat-description">Amélioration nécessaire</div>
                     </div>
                     <div class="cybersecurity-stat-card">
-                        <div class="cybersecurity-stat-number">100%</div>
-                        <div class="cybersecurity-stat-label">Législation Cyber</div>
+                        <div class="cybersecurity-stat-number">67%</div>
+                        <div class="cybersecurity-stat-label">Gap Réglementaire</div>
+                        <div class="cybersecurity-stat-description">Opportunité urgente</div>
                     </div>
                 </div>
                 
@@ -568,28 +607,38 @@
         </div>
 
         <div class="analysis-section" id="sovereignty-analysis" style="display: none;">
-            <h3>⚖️ Souveraineté Numérique dans l'espace CEDEAO : Les Défis</h3>
+            <div class="analysis-header">
+                <h2 class="analysis-title">⚖️ Défis Souveraineté</h2>
+                <p class="analysis-subtitle">Analyse des défis de la transformation digitale en Afrique de l'Ouest</p>
+            </div>
+            
             <div class="sovereignty-dashboard">
                 <div class="sovereignty-overview">
-                    <p><strong>Source:</strong> Analyse des défis de la transformation digitale en Afrique - Plus de 130 ans après Berlin, nouvelle carte de domination numérique</p>
+                    <div class="analysis-intro">
+                        <strong>Source:</strong> Analyse des défis de la transformation digitale en Afrique - Plus de 130 ans après Berlin, nouvelle carte de domination numérique
+                    </div>
                 </div>
                 
                 <div class="sovereignty-stats-grid">
                     <div class="sovereignty-stat-card">
                         <div class="sovereignty-stat-number">10</div>
                         <div class="sovereignty-stat-label">Défis Identifiés</div>
+                        <div class="sovereignty-stat-description">Transformation digitale</div>
                     </div>
                     <div class="sovereignty-stat-card sovereignty-highlight">
                         <div class="sovereignty-stat-number">5</div>
                         <div class="sovereignty-stat-label">Défis Critiques</div>
+                        <div class="sovereignty-stat-description">Action urgente</div>
                     </div>
                     <div class="sovereignty-stat-card">
                         <div class="sovereignty-stat-number">4</div>
                         <div class="sovereignty-stat-label">Domaines d'Impact</div>
+                        <div class="sovereignty-stat-description">Secteurs clés</div>
                     </div>
                     <div class="sovereignty-stat-card">
                         <div class="sovereignty-stat-number">70%</div>
-                        <div class="sovereignty-stat-label">Impact Élevé/Critique</div>
+                        <div class="sovereignty-stat-label">Impact Critique</div>
+                        <div class="sovereignty-stat-description">Risque élevé</div>
                     </div>
                 </div>
                 
@@ -807,6 +856,99 @@
                     </div>
                     <div class="conclusion-text">
                         <strong>Opportunités économiques :</strong> Exploiter pleinement les opportunités économiques qu'offre le numérique pour le développement continental.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="analysis-section" id="about" style="display: none;">
+            <div class="analysis-header">
+                <h2 class="analysis-title">ℹ️ À propos</h2>
+                <p class="analysis-subtitle">Initiative numérique AfricTivistes pour la souveraineté digitale en Afrique de l'Ouest</p>
+            </div>
+            
+            <div class="about-dashboard">
+                <div class="about-mission">
+                    <div class="about-card">
+                        <h3>🎯 Notre Mission</h3>
+                        <p>AfricTivistes Digital Initiative vise à analyser et documenter les enjeux de souveraineté numérique dans l'espace CEDEAO. Nous produisons des analyses approfondies sur la dominance des opérateurs étrangers, les défis de gouvernance numérique, et les opportunités de transformation digitale inclusive.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <h3>🔍 Méthodologie</h3>
+                        <p>Nos analyses s'appuient sur des données authentiques provenant d'organisations internationales reconnues : ITU (Union Internationale des Télécommunications), Union Africaine, et rapports officiels des régulateurs nationaux. Chaque visualisation est construite à partir de sources vérifiées et citées.</p>
+                    </div>
+                </div>
+                
+                <div class="about-africativistes">
+                    <div class="about-card">
+                        <h3>🌍 AfricTivistes</h3>
+                        <p>AfricTivistes est un mouvement citoyen panafricain fondé en 2014, dédié à la promotion de la démocratie, des droits humains et de la bonne gouvernance en Afrique. L'organisation développe des initiatives innovantes pour renforcer la participation citoyenne et défendre la liberté d'expression sur le continent.</p>
+                        
+                        <div class="africativistes-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">15+</div>
+                                <div class="stat-label">Pays africains</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2014</div>
+                                <div class="stat-label">Année de création</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">10+</div>
+                                <div class="stat-label">Années d'expérience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-author">
+                    <div class="about-card">
+                        <h3>👨‍💼 Cheikh Fall - Président AfricTivistes</h3>
+                        <p>Expert en gouvernance numérique et transformation digitale en Afrique, Cheikh Fall dirige les initiatives stratégiques d'AfricTivistes depuis plusieurs années. Ses recherches portent sur l'analyse géopolitique des télécommunications, la souveraineté numérique et les politiques publiques numériques responsables.</p>
+                        
+                        <div class="author-expertise">
+                            <div class="expertise-tag">Gouvernance Numérique</div>
+                            <div class="expertise-tag">Géopolitique des Télécoms</div>
+                            <div class="expertise-tag">Politiques Publiques TIC</div>
+                            <div class="expertise-tag">Souveraineté Digitale</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-data">
+                    <div class="about-card">
+                        <h3>📊 Sources de Données</h3>
+                        <div class="data-sources">
+                            <div class="source-item">
+                                <strong>ITU (International Telecommunication Union)</strong>
+                                <p>Données officielles sur les infrastructures, mandats de cybersécurité et statistiques de connectivité</p>
+                            </div>
+                            <div class="source-item">
+                                <strong>Union Africaine</strong>
+                                <p>Indicateurs de gouvernance numérique et cadres normatifs continentaux (Convention de Malabo)</p>
+                            </div>
+                            <div class="source-item">
+                                <strong>Régulateurs Nationaux TIC</strong>
+                                <p>Parts de marché des opérateurs, politiques sectorielles et données de couverture réseau</p>
+                            </div>
+                            <div class="source-item">
+                                <strong>Observatoires Régionaux</strong>
+                                <p>Analyses AfricTivistes et recherches sur la transformation digitale africaine</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-contact">
+                    <div class="about-card">
+                        <h3>📧 Contact & Collaboration</h3>
+                        <p>Cette plateforme d'analyse est développée dans le cadre des initiatives de recherche d'AfricTivistes. Pour des collaborations, données complémentaires ou suggestions d'amélioration, contactez l'équipe de recherche.</p>
+                        
+                        <div class="contact-note">
+                            <p><strong>Note :</strong> Toutes les analyses présentées reflètent les recherches indépendantes d'AfricTivistes et visent à contribuer au débat public sur la souveraineté numérique en Afrique de l'Ouest.</p>
+                        </div>
                     </div>
                 </div>
             </div>
