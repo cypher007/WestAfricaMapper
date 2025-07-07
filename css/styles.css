@@ -1813,18 +1813,22 @@ h4 {
 }
 
 .infrastructure-maps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     margin: 30px 0;
 }
 
 .map-card {
     background: white;
     border-radius: 15px;
-    padding: 25px;
+    padding: 30px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
 }
 
 .map-card:hover {
@@ -1833,23 +1837,26 @@ h4 {
 }
 
 .map-card h4 {
-    font-size: 1.4em;
+    font-size: 1.6em;
     color: #2c3e50;
-    margin-bottom: 20px;
-    font-weight: 600;
+    margin-bottom: 25px;
+    font-weight: 700;
     text-align: center;
+    width: 100%;
 }
 
 .map-image-container {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    width: 100%;
+    max-width: 1000px;
 }
 
 .infrastructure-map {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     transition: transform 0.3s ease;
 }
 
@@ -1858,20 +1865,25 @@ h4 {
 }
 
 .map-description {
-    text-align: left;
-    line-height: 1.6;
+    text-align: center;
+    line-height: 1.7;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .map-description p:first-child {
     color: #6c757d;
     font-style: italic;
-    font-size: 0.9em;
-    margin-bottom: 10px;
+    font-size: 1.0em;
+    margin-bottom: 15px;
+    font-weight: 500;
 }
 
 .map-description p:last-child {
     color: #495057;
-    font-size: 1.1em;
+    font-size: 1.2em;
+    line-height: 1.8;
+    text-align: justify;
 }
 
 .infrastructure-analysis {
@@ -2393,10 +2405,25 @@ h4 {
         padding: 20px 15px;
     }
     
-    .governance-charts,
-    .infrastructure-maps {
+    .governance-charts {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+    
+    .infrastructure-maps {
+        gap: 30px;
+    }
+    
+    .map-card {
+        padding: 20px;
+    }
+    
+    .map-description {
+        text-align: left;
+    }
+    
+    .map-description p:last-child {
+        text-align: left;
     }
     
     .countries-grid,
