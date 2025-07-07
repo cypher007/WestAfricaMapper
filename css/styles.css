@@ -1099,6 +1099,64 @@ body.mode-isp .legend {
 }
 
 .cybersecurity-stat-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.cybersecurity-stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    border-color: #4ecdc4;
+}
+
+.cybersecurity-stat-card.cyber-highlight {
+    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    color: white;
+}
+
+.cybersecurity-stat-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cybersecurity-stat-card.cyber-highlight .cybersecurity-stat-number {
+    color: white;
+    -webkit-text-fill-color: white;
+}
+
+.cybersecurity-stat-label {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+.cybersecurity-stat-card.cyber-highlight .cybersecurity-stat-label {
+    color: white;
+}
+
+.cybersecurity-stat-description {
+    font-size: 0.9em;
+    opacity: 0.8;
+    font-weight: 500;
+    color: #6c757d;
+}
+
+.cybersecurity-stat-card.cyber-highlight .cybersecurity-stat-description {
+    color: rgba(255,255,255,0.9);
+}
+
+.cybersecurity-stat-card {
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     border-radius: 15px;
     padding: 25px;
@@ -2074,6 +2132,164 @@ h4 {
     transform: translateY(-1px);
 }
 
+/* Cybersecurity Chart Enhancements */
+.cybersecurity-charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.cybersecurity-chart-container {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.cybersecurity-chart-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+.cybersecurity-chart-title {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.cybersecurity-chart-hint {
+    font-size: 0.9em;
+    color: #6c757d;
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.cybersecurity-full-width {
+    grid-column: 1 / -1;
+}
+
+.cybersecurity-map {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    margin: 20px auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.cybersecurity-map:hover {
+    transform: scale(1.02);
+}
+
+.cybersecurity-legend {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.cybersecurity-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.9);
+    padding: 10px 15px;
+    border-radius: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-weight: 500;
+    font-size: 0.95em;
+}
+
+.cybersecurity-legend-icon {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.cybersecurity-analysis-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 30px;
+    border-left: 5px solid #4ecdc4;
+}
+
+.cybersecurity-analysis-title {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.cybersecurity-analysis-text {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 1.1em;
+    color: #495057;
+}
+
+.cyber-highlight {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.cybersecurity-overview {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.analysis-intro {
+    font-size: 1.2em;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.cybersecurity-map-description {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid #4ecdc4;
+}
+
+.cybersecurity-map-description p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: #495057;
+}
+
+.cybersecurity-map-description p:first-child {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.cybersecurity-charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
 .map-container {
     background: white;
     border-radius: 15px;
@@ -2563,6 +2779,20 @@ h4 {
     
     .map-description p:last-child {
         text-align: left;
+    }
+    
+    .cybersecurity-charts-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .cybersecurity-legend {
+        gap: 15px;
+    }
+    
+    .cybersecurity-legend-item {
+        padding: 8px 12px;
+        font-size: 0.9em;
     }
     
     .countries-grid,
