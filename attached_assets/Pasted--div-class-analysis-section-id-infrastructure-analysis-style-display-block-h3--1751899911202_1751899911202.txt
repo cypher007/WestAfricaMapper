@@ -1,0 +1,73 @@
+<div class="analysis-section" id="infrastructure-analysis" style="display: block;">
+            <h3>🌐 Infrastructure Numérique - Cartes de Connectivité</h3>
+            <div class="infrastructure-content">
+                <div class="infrastructure-overview">
+                    <p><strong>Analyse:</strong> Visualisation des infrastructures critiques de connectivité en Afrique de l'Ouest</p>
+                </div>
+                
+                <div class="infrastructure-maps">
+                    <div class="map-card">
+                        <h4>📊 Bande Passante Internationale par Megabit</h4>
+                        <div class="map-image-container">
+                            <img src="attached_assets/Bande passante Megabit_1750205103855.png" alt="Carte de la bande passante internationale par megabit" class="infrastructure-map">
+                        </div>
+                        <div class="map-description">
+                            <p><strong>Source:</strong> International Telecommunication Union (ITU)</p>
+                            <p>Cette carte révèle les inégalités de connectivité internationale en Afrique de l'Ouest. Les pays côtiers comme le Ghana, le Nigeria et la Côte d'Ivoire bénéficient d'une meilleure bande passante grâce aux câbles sous-marins, tandis que les pays enclavés (Mali, Niger, Burkina Faso) dépendent entièrement du transit via leurs voisins.</p>
+                        </div>
+                    </div>
+
+                    <div class="map-card">
+                        <h4>🔗 Réseau de Fibre Optique Africain</h4>
+                        <div class="map-image-container">
+                            <img src="attached_assets/Fibre optique_1750205103855.png" alt="Carte du réseau de fibre optique en Afrique" class="infrastructure-map">
+                        </div>
+                        <div class="map-description">
+                            <p><strong>Source:</strong> Africa Fibre Reach</p>
+                            <p>Le réseau de fibre optique terrestre montre la dépendance critique de l'Afrique de l'Ouest aux infrastructures de transit. Les pays CEDEAO sont interconnectés par des réseaux principalement contrôlés par des opérateurs étrangers, créant des points de défaillance unique et une vulnérabilité géopolitique.</p>
+                        </div>
+                    </div>
+
+                    <div class="map-card">
+                        <h4>🌊 Câbles Sous-Marins 2Africa</h4>
+                        <div class="map-image-container">
+                            <img src="attached_assets/Cables sous-marins AF 2Africa_1750205189081.png" alt="Carte des câbles sous-marins 2Africa" class="infrastructure-map">
+                        </div>
+                        <div class="map-description">
+                            <p><strong>Source:</strong> Telecom Egypt</p>
+                            <p>Le projet 2Africa de Meta (Facebook) illustre la nouvelle géopolitique des câbles sous-marins. Ce méga-projet renforce la dépendance de l'Afrique de l'Ouest aux géants technologiques américains pour sa connectivité internationale, posant des questions de souveraineté numérique et de contrôle des données.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="infrastructure-analysis">
+                    <h4>🔍 Analyse Géopolitique des Infrastructures</h4>
+                    <div class="analysis-grid">
+                        <div class="analysis-point">
+                            <div class="analysis-icon">⚠️</div>
+                            <div class="analysis-text">
+                                <strong>Vulnérabilité structurelle :</strong> Les pays enclavés (Mali, Niger, Burkina Faso) dépendent entièrement du transit via les pays côtiers, créant des risques géopolitiques majeurs en cas de tensions régionales.
+                            </div>
+                        </div>
+                        <div class="analysis-point">
+                            <div class="analysis-icon">🌊</div>
+                            <div class="analysis-text">
+                                <strong>Domination des câbles sous-marins :</strong> Les GAFAM (Google, Meta, Amazon) contrôlent de plus en plus les câbles sous-marins africains, notamment avec 2Africa, renforçant leur hégémonie numérique.
+                            </div>
+                        </div>
+                        <div class="analysis-point">
+                            <div class="analysis-icon">💰</div>
+                            <div class="analysis-text">
+                                <strong>Coûts prohibitifs :</strong> Les faibles volumes de bande passante dans les pays CEDEAO maintiennent des coûts élevés, freinant le développement numérique et perpétuant la fracture numérique.
+                            </div>
+                        </div>
+                        <div class="analysis-point">
+                            <div class="analysis-icon">🔒</div>
+                            <div class="analysis-text">
+                                <strong>Points de contrôle stratégiques :</strong> Les stations d'atterrissement des câbles sous-marins (Lagos, Dakar, Abidjan) deviennent des actifs géopolitiques critiques contrôlés par des intérêts étrangers.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
