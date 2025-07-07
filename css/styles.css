@@ -1819,6 +1819,110 @@ h4 {
     margin: 30px 0;
 }
 
+.map-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.map-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+.map-card h4 {
+    font-size: 1.4em;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.map-image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.infrastructure-map {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.infrastructure-map:hover {
+    transform: scale(1.02);
+}
+
+.map-description {
+    text-align: left;
+    line-height: 1.6;
+}
+
+.map-description p:first-child {
+    color: #6c757d;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.map-description p:last-child {
+    color: #495057;
+    font-size: 1.1em;
+}
+
+.infrastructure-analysis {
+    margin-top: 40px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 30px;
+    border-left: 5px solid #28a745;
+}
+
+.infrastructure-analysis h4 {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.analysis-point {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    transition: transform 0.3s ease;
+}
+
+.analysis-point:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.analysis-icon {
+    font-size: 1.5em;
+    min-width: 40px;
+    text-align: center;
+}
+
+.analysis-text {
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
 .map-container {
     background: white;
     border-radius: 15px;
