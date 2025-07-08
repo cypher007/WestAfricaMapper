@@ -1679,7 +1679,7 @@ const sovereigntyData = {
             domain: "Technologie",
             impact: "Critique",
             details: "Dépendance totale aux composants électroniques importés (puces, serveurs, équipements réseau). Absence d'industries locales de fabrication.",
-            consequences: "Vulnérabilité aux ruptures d'approvisionnement, coûts élevés, impossibilité de contrôler la chaîne technologique, espionnage potentiel via hardware compromis."
+            consequences: "Vulnérabilité aux ruptures d'approvisionnement, coûts élevés, impossibilité de contrôler la chaîne technologique, espionnage potentiel via hardware compromis.",
         },
         {
             id: 2,
@@ -1687,7 +1687,7 @@ const sovereigntyData = {
             domain: "Technologie", 
             impact: "Critique",
             details: "Marginalisation dans le développement d'OS, applications stratégiques, IA et solutions cloud. Consommation passive de solutions externes.",
-            consequences: "Perte de souveraineté numérique, dépendance technologique, fuite de données vers l'étranger, innovation locale freinée."
+            consequences: "Perte de souveraineté numérique, dépendance technologique, fuite de données vers l'étranger, innovation locale freinée.",
         },
         {
             id: 3,
@@ -1695,7 +1695,7 @@ const sovereigntyData = {
             domain: "Politique",
             impact: "Élevé",
             details: "Services numériques échappant au contrôle réglementaire africain. Politiques inadaptées ou inexistantes face aux enjeux digitaux.",
-            consequences: "Évasion fiscale des géants du numérique, protection des données insuffisante, concurrence déloyale pour les entreprises locales."
+            consequences: "Évasion fiscale des géants du numérique, protection des données insuffisante, concurrence déloyale pour les entreprises locales.",
         },
         {
             id: 4,
@@ -1703,7 +1703,7 @@ const sovereigntyData = {
             domain: "Gouvernance",
             impact: "Élevé",
             details: "Législations souvent répressives ou inadaptées freinant l'innovation. Déséquilibre entre sécurité nationale et libertés numériques.",
-            consequences: "Fuite des talents, investissements tech découragés, innovation bridée, censure numérique, climat d'affaires dégradé."
+            consequences: "Fuite des talents, investissements tech découragés, innovation bridée, censure numérique, climat d'affaires dégradé.",
         },
         {
             id: 5,
@@ -1711,7 +1711,7 @@ const sovereigntyData = {
             domain: "Gouvernance",
             impact: "Critique",
             details: "Absence de stratégies nationales cohérentes pour la souveraineté numérique. Politiques publiques inadaptées aux enjeux géopolitiques du numérique.",
-            consequences: "Dépendance technologique perpétuée, vulnérabilité aux pressions externes, perte de contrôle stratégique, retard dans l'autonomie numérique."
+            consequences: "Dépendance technologique perpétuée, vulnérabilité aux pressions externes, perte de contrôle stratégique, retard dans l'autonomie numérique.",
         },
         {
             id: 6,
@@ -1719,7 +1719,7 @@ const sovereigntyData = {
             domain: "Technologie",
             impact: "Critique",
             details: "Cybersécurité défaillante, systèmes obsolètes, manque d'expertise locale en sécurité informatique.",
-            consequences: "Cyberattaques fréquentes, vol de données, paralysie des services publics, coûts de remédiation élevés, perte de confiance."
+            consequences: "Cyberattaques fréquentes, vol de données, paralysie des services publics, coûts de remédiation élevés, perte de confiance.",
         },
         {
             id: 7,
@@ -1727,7 +1727,7 @@ const sovereigntyData = {
             domain: "Technologie",
             impact: "Élevé",
             details: "Dépendance totale aux câbles sous-marins, satellites et infrastructures externes. Fragilité du réseau continental.",
-            consequences: "Risques de coupures massives, coûts de connectivité élevés, vulnérabilité aux pressions géopolitiques, isolement numérique possible."
+            consequences: "Risques de coupures massives, coûts de connectivité élevés, vulnérabilité aux pressions géopolitiques, isolement numérique possible.",
         },
         {
             id: 8,
@@ -1735,7 +1735,7 @@ const sovereigntyData = {
             domain: "Politique",
             impact: "Élevé",
             details: "Manque de leadership numérique continental. Absence de stratégies à long terme et de coordination inter-États.",
-            consequences: "Fragmentation des efforts, duplication des investissements, perte d'opportunités, faible poids dans les négociations internationales."
+            consequences: "Fragmentation des efforts, duplication des investissements, perte d'opportunités, faible poids dans les négociations internationales.",
         },
         {
             id: 9,
@@ -1743,7 +1743,7 @@ const sovereigntyData = {
             domain: "Gouvernance",
             impact: "Moyen",
             details: "Marginalisation dans les instances internationales de gouvernance numérique. Subir les décisions prises ailleurs.",
-            consequences: "Standards imposés défavorables, exclusion des marchés numériques, réglementations subies, perte d'influence géopolitique."
+            consequences: "Standards imposés défavorables, exclusion des marchés numériques, réglementations subies, perte d'influence géopolitique.",
         },
         {
             id: 10,
@@ -1751,7 +1751,7 @@ const sovereigntyData = {
             domain: "Économie",
             impact: "Élevé",
             details: "Culture de consommation passive des technologies étrangères au détriment de l'innovation locale. Fuite des cerveaux et sous-investissement dans la R&D technologique.",
-            consequences: "Écosystème technologique stagnant, création de valeur limitée, dépendance économique perpétuelle, potentiel d'innovation gaspillé."
+            consequences: "Écosystème technologique stagnant, création de valeur limitée, dépendance économique perpétuelle, potentiel d'innovation gaspillé.",
         }
     ]
 };
