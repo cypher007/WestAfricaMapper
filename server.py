@@ -62,25 +62,35 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             return super().do_GET()
 
 def main():
-    PORT = int(os.environ.get('PORT', 5000))
-    HOST = '0.0.0.0'  # Always bind to 0.0.0.0 for cloud deployment
+    # Try multiple ports to avoid conflicts
+    for port in [5000, 5001, 5002, 8000, 8080]:
+        PORT = int(os.environ.get('PORT', port))
+        HOST = '0.0.0.0'  # Always bind to 0.0.0.0 for cloud deployment
     
-    try:
-        with socketserver.TCPServer((HOST, PORT), CustomHTTPRequestHandler) as httpd:
-            print(f"🌍 ECOWAS ISP Dominance Map Server")
-            print(f"📡 Server running at http://{HOST}:{PORT}")
-            print(f"📂 Serving from: {os.getcwd()}")
-            print("🔗 Open in browser to view the interactive map")
-            print("Press Ctrl+C to stop the server")
-            
-            httpd.serve_forever()
-            
-    except KeyboardInterrupt:
-        print("\n🛑 Server stopped by user")
-        sys.exit(0)
-    except Exception as e:
-        print(f"❌ Error starting server: {e}")
-        sys.exit(1)
+        try:
+            with socketserver.TCPServer((HOST, PORT), CustomHTTPRequestHandler) as httpd:
+                print(f"🌍 ECOWAS ISP Dominance Map Server")
+                print(f"📡 Server running at http://{HOST}:{PORT}")
+                print(f"📂 Serving from: {os.getcwd()}")
+                print("🔗 Open in browser to view the interactive map")
+                print("Press Ctrl+C to stop the server")
+                
+                httpd.serve_forever()
+                break
+                
+        except OSError as e:
+            if e.errno == 98 and port != 8080:  # Address in use, try next port
+                print(f"⚠️  Port {port} in use, trying port {port+1 if port < 8000 else 8000}...")
+                continue
+            else:
+                print(f"❌ Error starting server: {e}")
+                sys.exit(1)
+        except KeyboardInterrupt:
+            print("\n🛑 Server stopped by user")
+            sys.exit(0)
+        except Exception as e:
+            print(f"❌ Error starting server: {e}")
+            sys.exit(1)
 
 if __name__ == "__main__":
     main()

@@ -1750,11 +1750,8 @@ const sovereigntyData = {
             title: "Addiction consommation vs Innovation",
             domain: "Économie",
             impact: "Élevé",
-            details: "Mentalité de consommation passive de technologies étrangères au détriment de l'innovation locale. Faible investissement dans la R&D numérique.",
-            consequences: "Écosystème technologique stagnant, fuite des cerveaux, dépendance économique perpétuelle, manque de compétitivité sur les marchés numériques globaux."
-            impact: "Moyen",
-            details: "Culture de consommation passive des technologies. Fuite des cerveaux et sous-investissement dans la R&D technologique.",
-            consequences: "Économie numérique extractive, création de valeur limitée, dépendance technologique perpétuée, potentiel d'innovation gaspillé."
+            details: "Culture de consommation passive des technologies étrangères au détriment de l'innovation locale. Fuite des cerveaux et sous-investissement dans la R&D technologique.",
+            consequences: "Écosystème technologique stagnant, création de valeur limitée, dépendance économique perpétuelle, potentiel d'innovation gaspillé."
         }
     ]
 };
