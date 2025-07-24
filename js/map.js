@@ -15,7 +15,7 @@ let currentMode = 'isp'; // 'isp' or 'governance'
 // ISP dominance data for ECOWAS countries
 const cedeaoData = {
     'Senegal': {
-        operators: ['Sonatel/Orange (France) - 60%', 'Free (USA/UE) - 25%', 'Expresso (Soudan) - 15%'],
+        operators: ['Sonatel/Orange (France) - 60%', 'YAS (Madagascar) - 25%', 'Expresso (Soudan) - 15%'],
         dominance: 'France',
         color: '#4a90e2',
         dependency: '85% étranger',
